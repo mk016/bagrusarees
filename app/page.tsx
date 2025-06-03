@@ -1,9 +1,12 @@
-import Image from "next/image";
+import Image from 'next/image';
+import ImageSlider from '../Components/ImageSlider';
 
 export default function Home() {
-  return (  
-    <div>
-      <h1>Bagrusarees</h1>
-    </div>
+  return (
+    <main className="bg-white min-h-screen">
+      {/* Hero Section */}
+      <ImageSlider />
+      {/* Add more sections for Saree Collection, Testimonials, Store Info, etc. as needed */}
+    </main>
   );
 }
