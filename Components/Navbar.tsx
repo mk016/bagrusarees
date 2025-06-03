@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-const navItems = [
+const mainNavItems = [
+  { type: 'link', label: 'Home', href: '/' },
+  { type: 'link', label: 'Dress Material', href: '/dress-material' },
   {
+    type: 'dropdown',
     label: 'SAREES',
     subItems: [
       { label: 'Cotton Saree', href: '/saree/cotton' },
@@ -16,6 +19,7 @@ const navItems = [
     ],
   },
   {
+    type: 'dropdown',
     label: 'SUIT SETS',
     subItems: [
       { label: 'Cotton Suit MulMul Dupatta', href: '/suit-set/cotton-mulmul-dupatta' },
@@ -33,6 +37,7 @@ const navItems = [
     ],
   },
   {
+    type: 'dropdown',
     label: 'FABRICS',
     subItems: [
       { label: 'Screen Print Fabric', href: '/fabric/screen-print' },
@@ -42,6 +47,7 @@ const navItems = [
     ],
   },
   {
+    type: 'dropdown',
     label: 'DUPATTAS',
     subItems: [
       { label: 'Kota Doriya Duptta', href: '/dupatta/kota-doriya' },
@@ -51,6 +57,7 @@ const navItems = [
     ],
   },
   {
+    type: 'dropdown',
     label: 'BEDSHEETS',
     subItems: [
       { label: 'Cotton Printed Bedsheets', href: '/bedsheet/cotton-printed' },
@@ -58,6 +65,7 @@ const navItems = [
     ],
   },
   {
+    type: 'dropdown',
     label: 'BAGS',
     subItems: [
       { label: 'Handcrafted traditional bags', href: '/bags/handcrafted-traditional' },
@@ -66,6 +74,7 @@ const navItems = [
     ],
   },
   {
+    type: 'dropdown',
     label: "MAN'S COLLECTION",
     subItems: [
       { label: "Men's kurtas with Bagru prints", href: '/men/kurtas-bagru' },
@@ -76,7 +85,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
-
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <>
@@ -119,15 +128,39 @@ export default function Navbar() {
       </nav>
       <div className="w-full bg-white border-t border-gray-200 py-3 flex justify-center">
         <ul className="flex gap-8 text-sm font-medium tracking-wider uppercase text-gray-700">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/dress-material">Dress Material</Link></li>
-          <li><Link href="/saree">Saree</Link></li>
-          <li><Link href="/fresh-arrival">Fresh Arrival</Link></li>
-          <li><Link href="/trending">Trending</Link></li>
-          <li><Link href="/combo-set">Combo Set</Link></li>
-          <li><Link href="/home-decor">Home Decor</Link></li>
-          <li><Link href="/best-seller">Best Seller</Link></li>
-          <li><Link href="/stitched-collection">Stitched Collection</Link></li>
+          {mainNavItems.map((item, idx) => (
+            <li
+              key={item.label}
+              className="relative group"
+              onMouseEnter={() => setOpenIndex(idx)}
+              onMouseLeave={() => setOpenIndex(null)}
+            >
+              {item.type === 'link' ? (
+                <Link href={item.href || '#'}>{item.label}</Link>
+              ) : (
+                <>
+                  <button
+                    className="focus:outline-none flex items-center gap-1"
+                    aria-haspopup="true"
+                    aria-expanded={openIndex === idx}
+                  >
+                    {item.label}
+                    <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  <ul
+                    className={`absolute left-0 top-full min-w-[220px] bg-white shadow-lg rounded-md py-2 z-50 transition-all duration-200 ${openIndex === idx ? 'block' : 'hidden'}`}
+                    role="menu"
+                  >
+                    {item.subItems?.map((sub) => (
+                      <li key={sub.label}>
+                        <Link href={sub.href} className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap" role="menuitem">{sub.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </>
