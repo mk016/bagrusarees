@@ -70,32 +70,36 @@ export default function ImageSlider(): JSX.Element {
   };
 
   return (
-    <div className="relative w-full mx-auto mt-4">
+    <div className="relative w-full max-w-screen-xl mx-auto mt-4 px-4">
       <div
-        className="relative h-[460px] mx-12 group hover:-translate-y-2"
+        className="relative w-full pt-[40%] overflow-hidden rounded-xl shadow-lg group"
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
       >
         <Image
           src={images[currentIndex].src}
           alt={`Slider Image ${currentIndex + 1}`}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-xl transition-all duration-500 ease-in-out cursor-pointer"
+          fill={true}
+          sizes="100vw"
+          className="object-cover transition-all duration-500 ease-in-out cursor-pointer"
         />
+        {/* Navigation Arrows */}
+        <button
+          className="absolute top-1/2 left-4 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md transition-opacity duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
+          onClick={prevSlide}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6 text-gray-700" />
+        </button>
+        <button
+          className="absolute top-1/2 right-4 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md transition-opacity duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
+          onClick={nextSlide}
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6 text-gray-700" />
+        </button>
       </div>
-      <button
-      className=""
-        onClick={prevSlide}
-      >
-        <ChevronLeft className="text-gray-400 group-hover:text-black" />
-      </button>
-      <button
-        className=""
-        onClick={nextSlide}
-      >
-        <ChevronRight className="text-gray-400 group-hover:text-black" />
-      </button>
+      {/* Dots (Pagination) */}
       <div className="flex justify-center mt-4">
         {images.map((_, index) => (
           <div
