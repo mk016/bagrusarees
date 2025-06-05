@@ -1,0 +1,534 @@
+[
+  {
+    "id": "kota_doria_saree_KT25417",
+    "collection": "Kota Doria Saree",
+    "name": "KOTA DORIA SAREE ( KT25417 )",
+    "imageSrc": "/assets/sarees/saree1.jpeg",
+    "originalPrice": "3,499.00",
+    "salePrice": "1,899.00",
+    "discountPercentage": "46%",
+    "status": "Sale",
+    "description": "This exquisite Kota Doria Saree features traditional Bagru block prints, renowned for their intricate designs and vibrant colors. Made from pure cotton, it offers a lightweight and comfortable drape, perfect for various occasions. The delicate fabric and handcrafted details reflect the rich artistry of Rajasthan.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Pure Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Dry clean only for first wash. Subsequent washes can be gentle hand wash in cold water with mild detergent. Do not bleach. Dry in shade."
+  },
+  { 
+    "id": "kota_doria_saree_KT25415",
+    "collection": "Kota Doria Saree",
+    "name": "KOTA DORIA SAREE ( KT25415 )",
+    "imageSrc": "/assets/sarees/saree2.jpeg",
+    "originalPrice": "3,499.00",
+    "salePrice": "1,899.00",
+    "discountPercentage": "46%",
+    "status": "Sale",
+    "description": "This exquisite Kota Doria Saree features traditional Bagru block prints, renowned for their intricate designs and vibrant colors. Made from pure cotton, it offers a lightweight and comfortable drape, perfect for various occasions. The delicate fabric and handcrafted details reflect the rich artistry of Rajasthan.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Pure Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Dry clean only for first wash. Subsequent washes can be gentle hand wash in cold water with mild detergent. Do not bleach. Dry in shade."
+  },
+  {
+    "id": "kota_doria_saree_KT25414",
+    "collection": "Kota Doria Saree",
+    "name": "KOTA DORIA SAREE ( KT25414 )",
+    "imageSrc": "/assets/sarees/saree3.jpeg",
+    "originalPrice": "3,499.00",
+    "salePrice": "1,899.00",
+    "discountPercentage": "46%",
+    "status": "Sale",
+    "description": "This exquisite Kota Doria Saree features traditional Bagru block prints, renowned for their intricate designs and vibrant colors. Made from pure cotton, it offers a lightweight and comfortable drape, perfect for various occasions. The delicate fabric and handcrafted details reflect the rich artistry of Rajasthan.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Pure Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Dry clean only for first wash. Subsequent washes can be gentle hand wash in cold water with mild detergent. Do not bleach. Dry in shade."
+  },
+  {
+    "id": "kota_doria_saree_KT25413",
+    "collection": "Kota Doria Saree",
+    "name": "KOTA DORIA SAREE ( KT25413 )",
+    "imageSrc": "/assets/sarees/saree4.jpeg",
+    "originalPrice": "3,499.00",
+    "salePrice": "1,899.00",
+    "discountPercentage": "46%",        
+    "status": "Sale",
+    "description": "This exquisite Kota Doria Saree features traditional Bagru block prints, renowned for their intricate designs and vibrant colors. Made from pure cotton, it offers a lightweight and comfortable drape, perfect for various occasions. The delicate fabric and handcrafted details reflect the rich artistry of Rajasthan.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Pure Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Dry clean only for first wash. Subsequent washes can be gentle hand wash in cold water with mild detergent. Do not bleach. Dry in shade."
+  },
+  {
+    "id": "mulmul_dupatta_suit_CTS19601",
+    "collection": "Mulmul Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH COTTON DUPATTA ( CTS19601 )",
+    "imageSrc": "/assets/suit/suit1.webp",
+    "originalPrice": "1,900.00",
+    "salePrice": "1,299.00",
+    "discountPercentage": "32%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set with Mulmul Dupatta is perfect for daily wear or casual outings. Featuring traditional block prints, it offers a comfortable fit and a stylish look. The soft mulmul dupatta adds a touch of grace and completes the ensemble.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Mulmul Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "mulmul_dupatta_suit_CTS19602",
+    "collection": "Mulmul Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH COTTON DUPATTA ( CTS19602 )",
+    "imageSrc": "/assets/suit/suit2.webp",
+    "originalPrice": "1,900.00",
+    "salePrice": "1,299.00",
+    "discountPercentage": "32%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set with Mulmul Dupatta is perfect for daily wear or casual outings. Featuring traditional block prints, it offers a comfortable fit and a stylish look. The soft mulmul dupatta adds a touch of grace and completes the ensemble.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Mulmul Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "mulmul_dupatta_suit_CTS19603",
+    "collection": "Mulmul Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH COTTON DUPATTA ( CTS19603 )",
+    "imageSrc": "/assets/suit/suit3.webp",
+    "originalPrice": "1,900.00",
+    "salePrice": "1,299.00",
+    "discountPercentage": "32%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set with Mulmul Dupatta is perfect for daily wear or casual outings. Featuring traditional block prints, it offers a comfortable fit and a stylish look. The soft mulmul dupatta adds a touch of grace and completes the ensemble.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Mulmul Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "mulmul_dupatta_suit_BTSJ1902",
+    "collection": "Mulmul Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH COTTON DUPATTA ( BTSJ 1902 )",
+    "imageSrc": "/assets/suit/suit4.webp",
+    "originalPrice": "1,900.00",
+    "salePrice": "1,299.00",
+    "discountPercentage": "32%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set with Mulmul Dupatta is perfect for daily wear or casual outings. Featuring traditional block prints, it offers a comfortable fit and a stylish look. The soft mulmul dupatta adds a touch of grace and completes the ensemble.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Mulmul Cotton",
+      "dupattaLength": "2.5 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "chiffon_dupatta_suit_CH31007",
+    "collection": "Chiffon Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH CHIFFON DUPATTA ( CH31007 )",
+    "imageSrc": "/assets/chiffon_Dupatta/dupatta1.webp",
+    "originalPrice": "1,900.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "21%",
+    "status": "Sale",
+    "description": "This stylish Cotton Suit Set comes with a lightweight Chiffon Dupatta, perfect for a chic and comfortable look. Adorned with beautiful prints, this set is ideal for both casual and semi-formal occasions, offering elegance and ease of wear.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Chiffon",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "chiffon_dupatta_suit_BTSJ138",
+    "collection": "Chiffon Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH CHIFFON DUPATTA ( BTSJ 138 )",
+    "imageSrc": "/assets/chiffon_Dupatta/dupatta2.webp",
+    "originalPrice": "2,499.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "40%",
+    "status": "Sale",
+    "description": "This stylish Cotton Suit Set comes with a lightweight Chiffon Dupatta, perfect for a chic and comfortable look. Adorned with beautiful prints, this set is ideal for both casual and semi-formal occasions, offering elegance and ease of wear.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Chiffon",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "chiffon_dupatta_suit_CH31004",
+    "collection": "Chiffon Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH CHIFFON DUPATTA ( CH31004 )",
+    "imageSrc": "/assets/chiffon_Dupatta/dupatta3.webp",
+    "originalPrice": "1,900.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "21%",
+    "status": "Sale",
+    "description": "This stylish Cotton Suit Set comes with a lightweight Chiffon Dupatta, perfect for a chic and comfortable look. Adorned with beautiful prints, this set is ideal for both casual and semi-formal occasions, offering elegance and ease of wear.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Chiffon",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "chiffon_dupatta_suit_BTSJ121214",
+    "collection": "Chiffon Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH CHIFFON DUPATTA ( BTSJ 121214 )",
+    "imageSrc": "/assets/chiffon_Dupatta/dupatta4.webp",
+    "originalPrice": "1,900.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "21%",
+    "status": "Sale",
+    "description": "This stylish Cotton Suit Set comes with a lightweight Chiffon Dupatta, perfect for a chic and comfortable look. Adorned with beautiful prints, this set is ideal for both casual and semi-formal occasions, offering elegance and ease of wear.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Chiffon",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "maheshwari_silk_saree_MSI11106",
+    "collection": "Maheshwari Silk Saree",
+    "name": "MAHESHWARI SILK BAGRU PRINT SAREE ( MSI11106 )",
+    "imageSrc": "/assets/sarees/saree1.jpeg",
+    "originalPrice": "5,999.00",
+    "salePrice": "3,499.00",
+    "discountPercentage": "42%",
+    "status": "Sale",
+    "description": "Experience the elegance of Maheshwari Silk with this Bagru Print Saree, featuring a rich texture and traditional motifs. This saree drapes beautifully and is perfect for festive occasions or cultural events. The blend of silk and cotton provides comfort and a luxurious feel.",
+    "details": {
+      "suitFabric": "Maheshwari Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Maheshwari Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "maheshwari_silk_saree_MS13701",
+    "collection": "Maheshwari Silk Saree",
+    "name": "MAHESHWARI SILK BAGRU PRINT SAREE ( MS13701 )",
+    "imageSrc": "/assets/sarees/saree2.jpeg",
+    "originalPrice": "5,999.00",
+    "salePrice": "3,499.00",
+    "discountPercentage": "42%",
+    "status": "Sale",
+    "description": "Experience the elegance of Maheshwari Silk with this Bagru Print Saree, featuring a rich texture and traditional motifs. This saree drapes beautifully and is perfect for festive occasions or cultural events. The blend of silk and cotton provides comfort and a luxurious feel.",
+    "details": {
+      "suitFabric": "Maheshwari Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Maheshwari Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "maheshwari_silk_saree_AMS0915",
+    "collection": "Maheshwari Silk Saree",
+    "name": "MAHESHWARI SILK BAGRU PRINT SAREE ( AMS0915 )",
+    "imageSrc": "/assets/sarees/saree3.jpeg",
+    "originalPrice": "5,999.00",
+    "salePrice": "3,499.00",
+    "discountPercentage": "42%",
+    "status": "Sale",
+    "description": "Experience the elegance of Maheshwari Silk with this Bagru Print Saree, featuring a rich texture and traditional motifs. This saree drapes beautifully and is perfect for festive occasions or cultural events. The blend of silk and cotton provides comfort and a luxurious feel.",
+    "details": {
+      "suitFabric": "Maheshwari Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Maheshwari Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "maheshwari_silk_saree_BTSJ192",
+    "collection": "Maheshwari Silk Saree",
+    "name": "MAHESHWARI SILK BAGRU PRINT SAREE ( BTSJ 192 )",
+    "imageSrc": "/assets/sarees/saree4.jpeg",
+    "originalPrice": "5,999.00",
+    "salePrice": "3,499.00",
+    "discountPercentage": "42%",
+    "status": "Sale",
+    "description": "Experience the elegance of Maheshwari Silk with this Bagru Print Saree, featuring a rich texture and traditional motifs. This saree drapes beautifully and is perfect for festive occasions or cultural events. The blend of silk and cotton provides comfort and a luxurious feel.",
+    "details": {
+      "suitFabric": "Maheshwari Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Maheshwari Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "chanderi_silk_saree_BTSJ108",
+    "collection": "Chanderi Silk Saree",
+    "name": "CHANDERI SILK BAGRU PRINT SAREE WITH ZARI BORDER ( BTSJ 108 )",
+    "imageSrc": "/assets/sarees/saree1.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sold Out",
+    "description": "Drape yourself in the timeless beauty of this Chanderi Silk Bagru Print Saree, adorned with an elegant Zari border. The lightweight and translucent Chanderi fabric, combined with traditional Bagru prints, makes this saree a perfect choice for special occasions, offering a blend of comfort and sophistication.",
+    "details": {
+      "suitFabric": "Chanderi Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Chanderi Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "chanderi_silk_saree_CS240611",
+    "collection": "Chanderi Silk Saree",
+    "name": "CHANDERI SILK BAGRU PRINT SAREE WITH ZARI BORDER ( CS240611 )",
+    "imageSrc": "/assets/sarees/saree2.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sale",
+    "description": "Drape yourself in the timeless beauty of this Chanderi Silk Bagru Print Saree, adorned with an elegant Zari border. The lightweight and translucent Chanderi fabric, combined with traditional Bagru prints, makes this saree a perfect choice for special occasions, offering a blend of comfort and sophistication.",
+    "details": {
+      "suitFabric": "Chanderi Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Chanderi Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "chanderi_silk_saree_CS060103",
+    "collection": "Chanderi Silk Saree",
+    "name": "CHANDERI SILK BAGRU PRINT SAREE WITH ZARI BORDER ( CS060103 )",
+    "imageSrc": "/assets/sarees/saree3.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sale",
+    "description": "Drape yourself in the timeless beauty of this Chanderi Silk Bagru Print Saree, adorned with an elegant Zari border. The lightweight and translucent Chanderi fabric, combined with traditional Bagru prints, makes this saree a perfect choice for special occasions, offering a blend of comfort and sophistication.",
+    "details": {
+      "suitFabric": "Chanderi Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Chanderi Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "chanderi_silk_saree_CS140727",
+    "collection": "Chanderi Silk Saree",
+    "name": "CHANDERI SILK BAGRU PRINT SAREE WITH ZARI BORDER ( CS140727 )",
+    "imageSrc": "/assets/sarees/saree4.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sold Out",
+    "description": "Drape yourself in the timeless beauty of this Chanderi Silk Bagru Print Saree, adorned with an elegant Zari border. The lightweight and translucent Chanderi fabric, combined with traditional Bagru prints, makes this saree a perfect choice for special occasions, offering a blend of comfort and sophistication.",
+    "details": {
+      "suitFabric": "Chanderi Silk",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Chanderi Silk",
+      "dupattaLength": "0.8 Mtr"
+    },
+    "careInstructions": "Dry clean only."
+  },
+  {
+    "id": "cotton_saree_CS0605",
+    "collection": "Cotton Saree Collection",
+    "name": "PREMIUM COTTON SAREE WITH BLOUSE PIECE ( CS0605 )",
+    "imageSrc": "/assets/sarees/saree1.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sale",
+    "description": "A comfortable and stylish Premium Cotton Saree with a matching blouse piece, featuring traditional Bagru prints. Perfect for everyday wear, this saree offers breathability and a soft feel, making it an ideal choice for the warm Indian climate.",
+    "details": {
+      "suitFabric": "Cotton",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Cotton",
+      "dupattaLength": "0.8 Mtr (Blouse Piece)"
+    },
+    "careInstructions": "Gentle machine wash or hand wash in cold water. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "cotton_saree_CS0604",
+    "collection": "Cotton Saree Collection",
+    "name": "PREMIUM COTTON SAREE WITH BLOUSE PIECE ( CS0604 )",
+    "imageSrc": "/assets/sarees/saree2.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sale",
+    "description": "A comfortable and stylish Premium Cotton Saree with a matching blouse piece, featuring traditional Bagru prints. Perfect for everyday wear, this saree offers breathability and a soft feel, making it an ideal choice for the warm Indian climate.",
+    "details": {
+      "suitFabric": "Cotton",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Cotton",
+      "dupattaLength": "0.8 Mtr (Blouse Piece)"
+    },
+    "careInstructions": "Gentle machine wash or hand wash in cold water. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "cotton_saree_CS0603",
+    "collection": "Cotton Saree Collection",
+    "name": "PREMIUM COTTON SAREE WITH BLOUSE PIECE ( CS0603 )",
+    "imageSrc": "/assets/sarees/saree3.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sale",
+    "description": "A comfortable and stylish Premium Cotton Saree with a matching blouse piece, featuring traditional Bagru prints. Perfect for everyday wear, this saree offers breathability and a soft feel, making it an ideal choice for the warm Indian climate.",
+    "details": {
+      "suitFabric": "Cotton",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Cotton",
+      "dupattaLength": "0.8 Mtr (Blouse Piece)"
+    },
+    "careInstructions": "Gentle machine wash or hand wash in cold water. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "cotton_saree_CS0602",
+    "collection": "Cotton Saree Collection",
+    "name": "PREMIUM COTTON SAREE WITH BLOUSE PIECE ( CS0602 )",
+    "imageSrc": "/assets/sarees/saree4.jpeg",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,499.00",
+    "discountPercentage": "50%",
+    "status": "Sale",
+    "description": "A comfortable and stylish Premium Cotton Saree with a matching blouse piece, featuring traditional Bagru prints. Perfect for everyday wear, this saree offers breathability and a soft feel, making it an ideal choice for the warm Indian climate.",
+    "details": {
+      "suitFabric": "Cotton",
+      "suitLength": "5.5 Mtr",
+      "bottomFabric": "N/A",
+      "dupattaFabric": "Cotton",
+      "dupattaLength": "0.8 Mtr (Blouse Piece)"
+    },
+    "careInstructions": "Gentle machine wash or hand wash in cold water. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "kota_dupatta_suit_CK27302",
+    "collection": "Kota Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH KOTA DORIA DUPATTA ( CK27302 )",
+    "imageSrc": "/assets/dupatta/dupatta1.webp",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,599.00",
+    "discountPercentage": "47%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set comes with a beautiful Kota Doria Dupatta, showcasing intricate patterns and a lightweight feel. Ideal for both casual and semi-formal wear, this set combines comfort with traditional charm, making it a versatile addition to your wardrobe.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Kota Doria",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "kota_dupatta_suit_BTSJ441",
+    "collection": "Kota Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH KOTA DORIA DUPATTA ( BTSJ 441 )",
+    "imageSrc": "/assets/dupatta/dupatta2.webp",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,599.00",
+    "discountPercentage": "47%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set comes with a beautiful Kota Doria Dupatta, showcasing intricate patterns and a lightweight feel. Ideal for both casual and semi-formal wear, this set combines comfort with traditional charm, making it a versatile addition to your wardrobe.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Kota Doria",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "kota_dupatta_suit_BTSJ442",
+    "collection": "Kota Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH KOTA DORIA DUPATTA ( BTSJ 442 )",
+    "imageSrc": "/assets/dupatta/dupatta3.webp",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,599.00",
+    "discountPercentage": "47%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set comes with a beautiful Kota Doria Dupatta, showcasing intricate patterns and a lightweight feel. Ideal for both casual and semi-formal wear, this set combines comfort with traditional charm, making it a versatile addition to your wardrobe.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Kota Doria",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  },
+  {
+    "id": "kota_dupatta_suit_CK10311",
+    "collection": "Kota Dupatta Suit Sets",
+    "name": "COTTON SUIT SET WITH KOTA DORIA DUPATTA ( CK10311 )",
+    "imageSrc": "/assets/dupatta/dupatta4.webp",
+    "originalPrice": "2,999.00",
+    "salePrice": "1,599.00",
+    "discountPercentage": "47%",
+    "status": "Sale",
+    "description": "This elegant Cotton Suit Set comes with a beautiful Kota Doria Dupatta, showcasing intricate patterns and a lightweight feel. Ideal for both casual and semi-formal wear, this set combines comfort with traditional charm, making it a versatile addition to your wardrobe.",
+    "details": {
+      "suitFabric": "Pure Cotton",
+      "suitLength": "2.5 Mtr",
+      "bottomFabric": "Pure Cotton",
+      "dupattaFabric": "Kota Doria",
+      "dupattaLength": "2.25 Mtr"
+    },
+    "careInstructions": "Gentle hand wash in cold water with mild detergent. Dry in shade. Do not bleach."
+  }
+] 
