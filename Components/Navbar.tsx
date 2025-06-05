@@ -86,10 +86,15 @@ const mainNavItems = [
 
 export default function Navbar() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <>
-      <div className="bg-white border-b border-gray-200 py-1 px-8 flex justify-end items-center">
+      <div className="bg-white border-b border-gray-200 py-1 px-8 flex justify-end items-center sm:px-4">
         <div className="flex gap-3 text-sm text-gray-600">
           <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
           <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
@@ -97,7 +102,14 @@ export default function Navbar() {
         </div>
       </div>
       <nav className="w-full bg-white py-6 px-8 flex items-center justify-between" aria-label="Main Navigation">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 md:hidden">
+          <button className="focus:outline-none" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex items-center gap-4 hidden md:flex">
           <button className="focus:outline-none" aria-label="Search">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -105,7 +117,7 @@ export default function Navbar() {
           </button>
         </div>
         <div className="flex items-center gap-4">
-          <img src="/logo.png" alt="Bagru Art Logo" className="h-12 w-12" />
+          <img src="/assets/logo.png" alt="Bagru Art Logo" className="h-18 w-18" />
           <div className="h-12 border-l border-gray-300"></div>
           <div>
             <span className="font-bold text-lg tracking-wide block text-gray-800">Bagru Sarees</span>
@@ -124,23 +136,28 @@ export default function Navbar() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0L7.5 15.75m-2.394-10.478L20.25 6.75m0 0l-1.5 9.75a1.125 1.125 0 01-1.125.938H7.125a1.125 1.125 0 01-1.125-.938l-1.5-9.75m15.75 0H6.375" />
             </svg>
           </Link>
+          <button className="md:hidden focus:outline-none" onClick={toggleMobileMenu} aria-label="Toggle Mobile Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </nav>
-      <div className="w-full bg-white border-t border-gray-200 py-3 flex justify-center">
-        <ul className="flex gap-8 text-sm font-medium tracking-wider uppercase text-gray-700">
+      <div className={`w-full bg-white border-t border-gray-200 py-3 md:flex justify-center ${isMobileMenuOpen ? 'block' : 'hidden'} md:block`}>
+        <ul className="flex gap-8 text-sm font-medium tracking-wider uppercase text-gray-700 flex-col md:flex-row items-center px-4 md:px-0">
           {mainNavItems.map((item, idx) => (
             <li
               key={item.label}
-              className="relative group"
+              className="relative group w-full text-center md:w-auto"
               onMouseEnter={() => setOpenIndex(idx)}
               onMouseLeave={() => setOpenIndex(null)}
             >
               {item.type === 'link' ? (
-                <Link href={item.href || '#'}>{item.label}</Link>
+                <Link href={item.href || '#'} className="block py-2 md:py-0">{item.label}</Link>
               ) : (
                 <>
                   <button
-                    className="focus:outline-none flex items-center gap-1"
+                    className="focus:outline-none flex items-center justify-center gap-1 w-full py-2 md:py-0"
                     aria-haspopup="true"
                     aria-expanded={openIndex === idx}
                   >
@@ -148,7 +165,7 @@ export default function Navbar() {
                     <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                   </button>
                   <ul
-                    className={`absolute left-0 top-full min-w-[220px] bg-white shadow-lg rounded-md py-2 z-50 transition-all duration-200 ${openIndex === idx ? 'block' : 'hidden'}`}
+                    className={`md:absolute left-0 top-full min-w-[220px] bg-white shadow-lg rounded-md py-2 z-50 transition-all duration-200 ${openIndex === idx ? 'block' : 'hidden'} ${openIndex === idx && 'md:block'}`}
                     role="menu"
                   >
                     {item.subItems?.map((sub) => (
