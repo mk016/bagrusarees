@@ -84,20 +84,20 @@ export default function ImageSlider(): JSX.Element {
           className="object-cover transition-all duration-500 ease-in-out cursor-pointer"
         />
         {/* Navigation Arrows */}
-        <button
+      <button
           className="absolute top-1/2 left-4 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md transition-opacity duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
-          onClick={prevSlide}
+        onClick={prevSlide}
           aria-label="Previous slide"
-        >
+      >
           <ChevronLeft className="w-6 h-6 text-gray-700" />
-        </button>
-        <button
+      </button>
+      <button
           className="absolute top-1/2 right-4 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md transition-opacity duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
-          onClick={nextSlide}
+        onClick={nextSlide}
           aria-label="Next slide"
-        >
+      >
           <ChevronRight className="w-6 h-6 text-gray-700" />
-        </button>
+      </button>
       </div>
       {/* Dots (Pagination) */}
       <div className="flex justify-center mt-4">
