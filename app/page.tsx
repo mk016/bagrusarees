@@ -16,12 +16,12 @@ import CottonSareeCollection from '../Components/CottonSareeCollection';
 
 export default function Home() {
   return (  
-    <main className="bg-white min-h-screen">
+      <main className="bg-white min-h-screen">
       {/* Hero Section */}
     
 
       {/* Image Slider Section */}
-      <section className="py-12 px-4">
+      <section className="py-12">
         <ImageSlider />
       </section>
 
