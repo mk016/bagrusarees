@@ -70,7 +70,7 @@ export default function ImageSlider(): JSX.Element {
   };
 
   return (
-    <div className="relative w-full max-w-screen-xl mx-auto mt-4 px-4">
+    <div className="relative w-full">
       <div
         className="relative w-full pt-[40%] overflow-hidden rounded-xl shadow-lg group"
         onMouseOver={handleMouseOver}
@@ -98,19 +98,6 @@ export default function ImageSlider(): JSX.Element {
       >
           <ChevronRight className="w-6 h-6 text-gray-700" />
       </button>
-      </div>
-      {/* Dots (Pagination) */}
-      <div className="flex justify-center mt-4">
-        {images.map((_, index) => (
-          <div
-            key={index}
-            className={`h-1 w-10 mx-1 ${
-              index === currentIndex
-                ? "bg-[#beff46] rounded-xl"
-                : "bg-gray-300 rounded-xl"
-            } transition-all duration-500 ease-in-out`}
-          ></div>
-        ))}
       </div>
     </div>
   );

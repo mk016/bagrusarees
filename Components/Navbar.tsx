@@ -2,6 +2,12 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useCart } from '@/Components/CartContext';
+import { useRouter, useSearchParams } from 'next/navigation';
+
+interface NavbarProps {
+  // Removed: onCartClick: () => void;
+}
 
 const mainNavItems = [
   { type: 'link', label: 'Home', href: '/' },
@@ -84,40 +90,44 @@ const mainNavItems = [
   },
 ];
 
-export default function Navbar() {
+export default function Navbar(/* Removed: { onCartClick }: NavbarProps */) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { cart, toggleCart } = useCart();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (isSearchOpen) {
+      setSearchQuery('');
+    }
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim() !== '') {
+      router.push(`/search?query=${searchQuery.trim()}`);
+      setIsSearchOpen(false);
+      setSearchQuery('');
+    }
+  };
+
   return (
     <>
-      <div className="bg-white border-b border-gray-200 py-1 px-8 flex justify-end items-center sm:px-4">
-        <div className="flex gap-3 text-sm text-gray-600">
-          <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-          <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-          <a href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48a2.78 2.78 0 0 0-1.94 1.94C2 8.16 2 12 2 12s0 3.84.46 5.58a2.78 2.78 0 0 0 1.94 1.94c1.72.48 8.6.48 8.6.48s6.88 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C22 15.84 22 12 22 12s0-3.84-.46-5.58z"></path><path d="M10 15l5-3-5-3z"></path></svg></a>
-        </div>
-      </div>
+  
       <nav className="w-full bg-white py-6 px-8 flex items-center justify-between" aria-label="Main Navigation">
-        <div className="flex items-center gap-6 md:hidden">
-          <button className="focus:outline-none" aria-label="Search">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-          </button>
-        </div>
-        <div className="flex items-center gap-4 hidden md:flex">
-          <button className="focus:outline-none" aria-label="Search">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-          </button>
-        </div>
         <div className="flex items-center gap-4">
-          <img src="/assets/logo.png" alt="Bagru Art Logo" className="h-18 w-18" />
+          <img src="/assets/logo.png" alt="Bagru Art Logo" className="h-14 w-14" />
           <div className="h-12 border-l border-gray-300"></div>
           <div>
             <span className="font-bold text-lg tracking-wide block text-gray-800">Bagru Sarees</span>
@@ -125,17 +135,36 @@ export default function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/auth/login" aria-label="Login">
+          <button className="focus:outline-none" aria-label="Search" onClick={toggleSearch}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M18.75 12h-12m0 0l3.75-3.75M6.75 12l3.75 3.75" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
-          </Link>
-          <Link href="/cart" aria-label="Cart">
+          </button>
+          <div className="relative group">
+            <button className="focus:outline-none" aria-label="Profile">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </button>
+            <ul className="absolute right-0 top-full min-w-[150px] bg-white shadow-lg rounded-md py-2 z-50 hidden group-hover:block">
+              <li>
+                <Link href="/profile" className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap">Profile</Link>
+              </li>
+              <li>
+                <button className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap w-full text-left">Logout</button>
+              </li>
+            </ul>
+          </div>
+          <button onClick={toggleCart} className="relative" aria-label="Cart">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0L7.5 15.75m-2.394-10.478L20.25 6.75m0 0l-1.5 9.75a1.125 1.125 0 01-1.125.938H7.125a1.125 1.125 0 01-1.125-.938l-1.5-9.75m15.75 0H6.375" />
             </svg>
-          </Link>
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                {cart.length}
+              </span>
+            )}
+          </button>
           <button className="md:hidden focus:outline-none" onClick={toggleMobileMenu} aria-label="Toggle Mobile Menu">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -143,6 +172,25 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
+      {isSearchOpen && (
+        <div className="fixed inset-0 bg-white bg-opacity-95 z-[1000] flex flex-col items-center justify-center p-4">
+          <button onClick={toggleSearch} className="absolute top-4 right-4 text-gray-700 hover:text-gray-900 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="w-full max-w-md">
+            <input
+              type="text"
+              placeholder="Search for products..."
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onKeyPress={handleSearchSubmit}
+            />
+          </div>
+        </div>
+      )}
       <div className={`w-full bg-white border-t border-gray-200 py-3 md:flex justify-center ${isMobileMenuOpen ? 'block' : 'hidden'} md:block`}>
         <ul className="flex gap-8 text-sm font-medium tracking-wider uppercase text-gray-700 flex-col md:flex-row items-center px-4 md:px-0">
           {mainNavItems.map((item, idx) => (
