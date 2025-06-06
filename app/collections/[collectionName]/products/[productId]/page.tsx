@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import productsData from '@/data/products.json';
 import ProductCard from '@/Components/ProductCard';
+import Link from 'next/link';
+import { useCart } from '@/Components/CartContext';
 
 interface Product {
   id: string;
@@ -33,6 +35,7 @@ interface ProductPageProps {
 
 export default function ProductPage({ params }: ProductPageProps) {
   const { collectionName, productId } = params;
+  const { addToCart, toggleCart } = useCart();
 
   // Find the product based on collectionName and productId
   const product = (productsData as Product[]).find(
@@ -53,13 +56,13 @@ export default function ProductPage({ params }: ProductPageProps) {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Product Image Section */}
-        <div className="flex justify-center items-start">
+        <div className="flex items-start w-full">
           <Image
             src={product.imageSrc}
             alt={product.name}
             width={500}
             height={500}
-            className="rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg w-full object-contain"
           />
         </div>
 
@@ -98,12 +101,18 @@ export default function ProductPage({ params }: ProductPageProps) {
           <p className="text-sm text-gray-500">Free Shipping | COD Available in India</p>
 
           <div className="flex space-x-4">
-            <button className="bg-gray-800 text-white py-3 px-6 rounded-md hover:bg-gray-900 transition-colors flex-1">
+            <button
+              onClick={() => {
+                addToCart(product);
+                toggleCart(); // Open cart sidebar
+              }}
+              className="bg-gray-800 text-white py-3 px-6 rounded-md hover:bg-gray-900 transition-colors flex-1"
+            >
               ADD TO CART
             </button>
-            <button className="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 transition-colors flex-1">
+            <Link href="/checkout" className="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 transition-colors flex-1 text-center">
               BUY IT NOW
-            </button>
+            </Link>
           </div>
 
           {/* Icons/Features */}
@@ -143,46 +152,46 @@ export default function ProductPage({ params }: ProductPageProps) {
             <h3 className="text-lg font-semibold text-gray-800 mt-6">Care Instructions:</h3>
             <p className="text-sm text-gray-700">{product.careInstructions}</p>
           </div>
-
-          {/* Customer Reviews Section */}
-          <section className="py-12 border-t border-gray-200 mt-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">CUSTOMER REVIEWS</h2>
-            <div className="flex justify-center mb-6">
-              <div className="text-yellow-400 text-xl">★ ★ ★ ★ ☆</div> {/* Placeholder for star rating */}
-            </div>
-            <p className="text-gray-600 mb-6">Be the first to write a review</p>
-            <button className="bg-[#579796] text-white py-2 px-6 rounded-md hover:bg-[#4a807f] transition-colors">
-              Write a review
-            </button>
-          </section>
-
-          {/* Frequently Bought Together Section */}
-          <section className="py-12 border-t border-gray-200 mt-8">
-            <h2 className="text-2xl font-bold mb-8 text-center">FREQUENTLY BOUGHT TOGETHER</h2>
-            <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 pb-4">
-              {/* Placeholder for related products - replace with actual data fetching/filtering */}
-              {(productsData as Product[]).filter(p => ["mulmul_dupatta_suit_CTS19602", "chiffon_dupatta_suit_CH31007", "maheshwari_silk_saree_MSI11106", "chanderi_silk_saree_CS240611"].includes(p.id)).map(product => (
-                <div key={product.id} className="flex-none w-64 md:w-auto">
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Recently Viewed Section */}
-          <section className="py-12 border-t border-gray-200 mt-8">
-            <h2 className="text-2xl font-bold mb-8 text-center">RECENTLY VIEWED</h2>
-            <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 pb-4">
-              {/* Placeholder for recently viewed products - replace with actual data or logic */}
-              {(productsData as Product[]).filter(p => ["mulmul_dupatta_suit_CTS19603", "chiffon_dupatta_suit_BTSJ138", "chiffon_dupatta_suit_CH31004", "maheshwari_silk_saree_BTSJ192"].includes(p.id)).map(product => (
-                <div key={product.id} className="flex-none w-64 md:w-auto">
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          </section>
         </div>
       </div>
+
+      {/* Customer Reviews Section */}
+      <section className="py-12 border-t border-gray-200 mt-8 text-center">
+        <h2 className="text-2xl font-bold mb-4">CUSTOMER REVIEWS</h2>
+        <div className="flex justify-center mb-6">
+          <div className="text-yellow-400 text-xl">★ ★ ★ ★ ☆</div> {/* Placeholder for star rating */}
+        </div>
+        <p className="text-gray-600 mb-6">Be the first to write a review</p>
+        <button className="bg-[#579796] text-white py-2 px-6 rounded-md hover:bg-[#4a807f] transition-colors">
+          Write a review
+        </button>
+      </section>
+
+      {/* Frequently Bought Together Section */}
+      <section className="py-12 border-t border-gray-200 mt-8">
+        <h2 className="text-2xl font-bold mb-8 text-center">FREQUENTLY BOUGHT TOGETHER</h2>
+        <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 pb-4">
+          {/* Placeholder for related products - replace with actual data fetching/filtering */}
+          {(productsData as Product[]).filter(p => ["mulmul_dupatta_suit_CTS19602", "chiffon_dupatta_suit_CH31007", "maheshwari_silk_saree_MSI11106", "chanderi_silk_saree_CS240611"].includes(p.id)).map(product => (
+            <div key={product.id} className="flex-none w-64 md:w-auto">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Recently Viewed Section */}
+      <section className="py-12 border-t border-gray-200 mt-8">
+        <h2 className="text-2xl font-bold mb-8 text-center">RECENTLY VIEWED</h2>
+        <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 pb-4">
+          {/* Placeholder for recently viewed products - replace with actual data or logic */}
+          {(productsData as Product[]).filter(p => ["mulmul_dupatta_suit_CTS19603", "chiffon_dupatta_suit_BTSJ138", "chiffon_dupatta_suit_CH31004", "maheshwari_silk_saree_BTSJ192"].includes(p.id)).map(product => (
+            <div key={product.id} className="flex-none w-64 md:w-auto">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 } 
