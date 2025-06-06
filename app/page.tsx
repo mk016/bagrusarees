@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import ImageSlider from '../Components/ImageSlider';
 import SuitCollection from '../Components/SuitCollection';
@@ -13,7 +15,7 @@ import ChanderiSilkSareeCollection from '../Components/ChanderiSilkSareeCollecti
 import CottonSareeCollection from '../Components/CottonSareeCollection';
 
 export default function Home() {
-  return (
+  return (  
     <main className="bg-white min-h-screen">
       {/* Hero Section */}
     
