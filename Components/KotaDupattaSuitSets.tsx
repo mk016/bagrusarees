@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import ProductCard from './ProductCard';
 import productsData from '../data/products.json';
