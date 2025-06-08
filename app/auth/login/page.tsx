@@ -1,10 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { useAuth } from '@/Components/AuthContext';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      router.replace(callbackUrl || '/');
+    }
+  }, [user, callbackUrl, router]);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);

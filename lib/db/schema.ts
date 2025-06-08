@@ -1,5 +1,6 @@
 import { pgTable, uuid, varchar, text, decimal, integer, boolean, timestamp, jsonb, primaryKey } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 // Users Table
 export const users = pgTable('users', {

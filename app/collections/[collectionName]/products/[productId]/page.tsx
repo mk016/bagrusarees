@@ -5,6 +5,7 @@ import productsData from '@/data/products.json';
 import ProductCard from '@/Components/ProductCard';
 import Link from 'next/link';
 import { useCart } from '@/Components/CartContext';
+import { useRouter } from 'next/navigation';
 
 interface Product {
   id: string;
@@ -36,6 +37,7 @@ interface ProductPageProps {
 export default function ProductPage({ params }: ProductPageProps) {
   const { collectionName, productId } = params;
   const { addToCart, toggleCart } = useCart();
+  const router = useRouter();
 
   // Find the product based on collectionName and productId
   const product = (productsData as Product[]).find(
@@ -110,9 +112,15 @@ export default function ProductPage({ params }: ProductPageProps) {
             >
               ADD TO CART
             </button>
-            <Link href="/checkout" className="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 transition-colors flex-1 text-center">
+            <button
+              onClick={() => {
+                addToCart(product);
+                router.push('/checkout');
+              }}
+              className="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 transition-colors flex-1 text-center"
+            >
               BUY IT NOW
-            </Link>
+            </button>
           </div>
 
           {/* Icons/Features */}

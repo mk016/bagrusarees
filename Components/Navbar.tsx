@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/Components/CartContext';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '@/Components/AuthContext';
 
 interface NavbarProps {
   // Removed: onCartClick: () => void;
@@ -98,6 +99,7 @@ export default function Navbar(/* Removed: { onCartClick }: NavbarProps */) {
   const { cart, toggleCart } = useCart();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user, logout } = useAuth();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -141,19 +143,14 @@ export default function Navbar(/* Removed: { onCartClick }: NavbarProps */) {
             </svg>
           </button>
           <div className="relative group">
-            <button className="focus:outline-none" aria-label="Profile">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </button>
-            <ul className="absolute right-0 top-full min-w-[150px] bg-white shadow-lg rounded-md py-2 z-50 hidden group-hover:block">
-              <li>
-                <Link href="/profile" className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap">Profile</Link>
-              </li>
-              <li>
-                <button className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap w-full text-left">Logout</button>
-              </li>
-            </ul>
+            {!user ? (
+              <Link href="/auth/login" className="btn">Login</Link>
+            ) : (
+              <>
+                <Link href="/profile" className="profile-icon">👤</Link>
+                <button onClick={logout} className="btn">Logout</button>
+              </>
+            )}
           </div>
           <button onClick={toggleCart} className="relative" aria-label="Cart">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
