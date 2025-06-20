@@ -2,18 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { carts, cartItems, products } from '@/lib/db/schema';
 import { eq, and } from 'drizzle-orm';
-import { getServerSession } from 'next-auth';
+import { getServerSession } from "next-auth/next";
 import { authConfig } from '@/lib/auth/config';
 import { AddToCartSchema } from '@/lib/types';
 import { z } from 'zod';
+import { Session } from "next-auth";
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authConfig);
+    const session: Session | null = await getServerSession(authConfig);
     const { searchParams } = new URL(request.url);
     const sessionId = searchParams.get('sessionId');
 
-    if (!session?.user?.id && !sessionId) {
+    if (!session?.user?.email && !sessionId) {
       return NextResponse.json({
         success: true,
         data: { items: [], total: 0 },
@@ -22,11 +23,11 @@ export async function GET(request: NextRequest) {
 
     // Find or create cart
     let cart;
-    if (session?.user?.id) {
+    if (session?.user?.email) {
       cart = await db
         .select()
         .from(carts)
-        .where(eq(carts.userId, session.user.id))
+        .where(eq(carts.userId, session.user.email))
         .limit(1);
     } else if (sessionId) {
       cart = await db
@@ -82,7 +83,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authConfig);
+    const session: Session | null = await getServerSession(authConfig);
     const body = await request.json();
     const validatedData = AddToCartSchema.parse(body);
 
@@ -108,17 +109,17 @@ export async function POST(request: NextRequest) {
 
     // Find or create cart
     let cart;
-    if (session?.user && session.user.id) {
+    if (session?.user && session.user.email) {
       cart = await db
         .select()
         .from(carts)
-        .where(eq(carts.userId, session.user.id))
+        .where(eq(carts.id, session.user.email))
         .limit(1);
 
       if (!cart || cart.length === 0) {
         cart = await db
           .insert(carts)
-          .values({ userId: session.user.id })
+          .values({ userId: session.user.email })
           .returning();
       }
     } else {

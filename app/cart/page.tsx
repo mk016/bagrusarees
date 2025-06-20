@@ -3,6 +3,8 @@ import { useCart } from '@/Components/CartContext';
 import Image from 'next/image';
 import Link from 'next/link';
 
+
+
 export default function CartPage() {
   const { cart, removeFromCart, clearCart } = useCart();
 
