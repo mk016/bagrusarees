@@ -1,4 +1,4 @@
-import { NextAuthConfig } from 'next-auth';
+import type { NextAuthOptions } from "next-auth";
 import { SupabaseAdapter } from '@auth/supabase-adapter';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -9,7 +9,7 @@ const loginSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
-export const authConfig: NextAuthConfig = {
+export const authConfig: NextAuthOptions = {
   adapter: SupabaseAdapter({
     url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
@@ -64,9 +64,8 @@ export const authConfig: NextAuthConfig = {
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id as string;
-        // Only assign if role exists on token
+      if (token && session.user) {
+        session.user.email = token.id as string;
         if ('role' in token) {
           // @ts-expect-error: role is custom
           session.user.role = token.role as string;
