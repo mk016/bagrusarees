@@ -5,6 +5,9 @@ import { eq, and, like, gte, lte, desc, asc } from 'drizzle-orm';
 import { CreateProductSchema, ProductFilters } from '@/lib/types';
 import { z } from 'zod';
 
+// Use Node.js runtime instead of Edge Runtime
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
