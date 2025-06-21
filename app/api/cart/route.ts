@@ -1,226 +1,262 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { carts, cartItems, products } from '@/lib/db/schema';
+import { carts, cartItems, products, productImages } from '@/lib/db/schema';
 import { eq, and } from 'drizzle-orm';
-import { getServerSession } from "next-auth/next";
-import { authConfig } from '@/lib/auth/config';
+// import { getServerSession } from "next-auth/next";
+// import { authConfig } from '@/lib/auth/config';
 import { AddToCartSchema } from '@/lib/types';
 import { z } from 'zod';
-import { Session } from "next-auth";
+// import { Session } from "next-auth";
+
+// Use Node.js runtime instead of Edge Runtime
+export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {
   try {
-    const session: Session | null = await getServerSession(authConfig);
-    const { searchParams } = new URL(request.url);
-    const sessionId = searchParams.get('sessionId');
+    // const session = await getServerSession(authConfig);
+    // const sessionId = request.cookies.get('sessionId')?.value;
+    
+    // if (!session?.user?.id && !sessionId) {
+    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // }
 
-    if (!session?.user?.email && !sessionId) {
-      return NextResponse.json({
-        success: true,
-        data: { items: [], total: 0 },
-      });
-    }
+    // const userId = session?.user?.id || sessionId;
 
-    // Find or create cart
-    let cart;
-    if (session?.user?.email) {
-      cart = await db
-        .select()
-        .from(carts)
-        .where(eq(carts.userId, session.user.email))
-        .limit(1);
-    } else if (sessionId) {
-      cart = await db
-        .select()
-        .from(carts)
-        .where(eq(carts.sessionId, sessionId))
-        .limit(1);
-    }
+    // Mock user ID for now since auth is disabled
+    const userId = 'guest-user';
 
-    if (!cart || cart.length === 0) {
-      return NextResponse.json({
-        success: true,
-        data: { items: [], total: 0 },
-      });
-    }
-
-    // Get cart items with product details
-    const items = await db
+    const userCart = await db
       .select()
-      .from(cartItems)
-      .leftJoin(products, eq(cartItems.productId, products.id))
-      .where(eq(cartItems.cartId, cart[0].id));
+      .from(carts)
+      .where(eq(carts.userId, userId))
+      .limit(1);
 
-    const total = items.reduce((sum, item) => {
-      return sum + (parseFloat(item.cart_items.price) * item.cart_items.quantity);
-    }, 0);
+    if (userCart.length === 0) {
+      return NextResponse.json({ items: [], total: 0 });
+    }
 
-    return NextResponse.json({
-      success: true,
-      data: {
-        id: cart[0].id,
-        items: items.map(item => ({
-          ...item.cart_items,
-          product: item.products,
-        })),
-        total,
-      },
-    });
-  } catch (error) {
-    console.error('Cart GET Error:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: {
-          code: 'CART_FETCH_ERROR',
-          message: 'Failed to fetch cart',
+    const cartId = userCart[0].id;
+
+    const items = await db
+      .select({
+        id: cartItems.id,
+        productId: cartItems.productId,
+        quantity: cartItems.quantity,
+        price: cartItems.price,
+        product: {
+          id: products.id,
+          name: products.name,
+          price: products.price,
         },
-      },
-      { status: 500 }
-    );
+      })
+      .from(cartItems)
+      .innerJoin(products, eq(cartItems.productId, products.id))
+      .where(eq(cartItems.cartId, cartId));
+
+    const total = items.reduce((sum, item) => sum + (parseFloat(item.price.toString()) * item.quantity), 0);
+
+    return NextResponse.json({ items, total });
+  } catch (error) {
+    console.error('Error fetching cart:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const session: Session | null = await getServerSession(authConfig);
     const body = await request.json();
-    const validatedData = AddToCartSchema.parse(body);
+    const { productId, quantity } = AddToCartSchema.parse(body);
 
-    // Get product details
+    // const session = await getServerSession(authConfig);
+    // const sessionId = request.cookies.get('sessionId')?.value;
+    
+    // if (!session?.user?.id && !sessionId) {
+    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // }
+
+    // const userId = session?.user?.id || sessionId;
+
+    // Mock user ID for now since auth is disabled
+    const userId = 'guest-user';
+
+    // Check if product exists
     const product = await db
       .select()
       .from(products)
-      .where(eq(products.id, validatedData.productId))
+      .where(eq(products.id, productId))
       .limit(1);
 
-    if (!product || product.length === 0) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 'PRODUCT_NOT_FOUND',
-            message: 'Product not found',
-          },
-        },
-        { status: 404 }
-      );
+    if (product.length === 0) {
+      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
 
-    // Find or create cart
-    let cart;
-    if (session?.user && session.user.email) {
-      cart = await db
-        .select()
-        .from(carts)
-        .where(eq(carts.id, session.user.email))
-        .limit(1);
+    // Get or create cart
+    let userCart = await db
+      .select()
+      .from(carts)
+      .where(eq(carts.userId, userId))
+      .limit(1);
 
-      if (!cart || cart.length === 0) {
-        cart = await db
-          .insert(carts)
-          .values({ userId: session.user.email })
-          .returning();
-      }
+    let cartId: string;
+
+    if (userCart.length === 0) {
+      const newCart = await db
+        .insert(carts)
+        .values({ userId })
+        .returning();
+      cartId = newCart[0].id;
     } else {
-      const sessionId = body.sessionId;
-      if (!sessionId) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: {
-              code: 'SESSION_REQUIRED',
-              message: 'Session ID is required for guest cart',
-            },
-          },
-          { status: 400 }
-        );
-      }
-
-      cart = await db
-        .select()
-        .from(carts)
-        .where(eq(carts.sessionId, sessionId))
-        .limit(1);
-
-      if (!cart || cart.length === 0) {
-        cart = await db
-          .insert(carts)
-          .values({ sessionId })
-          .returning();
-      }
+      cartId = userCart[0].id;
     }
 
     // Check if item already exists in cart
     const existingItem = await db
       .select()
       .from(cartItems)
-      .where(
-        and(
-          eq(cartItems.cartId, cart[0].id),
-          eq(cartItems.productId, validatedData.productId)
-        )
-      )
+      .where(and(eq(cartItems.cartId, cartId), eq(cartItems.productId, productId)))
       .limit(1);
 
-    if (existingItem && existingItem.length > 0) {
+    if (existingItem.length > 0) {
       // Update quantity
-      const updatedItem = await db
+      await db
         .update(cartItems)
-        .set({
-          quantity: existingItem[0].quantity + validatedData.quantity,
-        })
-        .where(eq(cartItems.id, existingItem[0].id))
-        .returning();
-
-      return NextResponse.json({
-        success: true,
-        data: updatedItem[0],
-        message: 'Cart item updated successfully',
-      });
+        .set({ quantity: existingItem[0].quantity + quantity })
+        .where(eq(cartItems.id, existingItem[0].id));
     } else {
-      // Add new item
-      const newItem = await db
+      // Add new item with price
+      await db
         .insert(cartItems)
         .values({
-          cartId: cart[0].id,
-          productId: validatedData.productId,
-          quantity: validatedData.quantity,
-          price: product[0].price,
-        })
-        .returning();
-
-      return NextResponse.json({
-        success: true,
-        data: newItem[0],
-        message: 'Item added to cart successfully',
-      });
+          cartId,
+          productId,
+          quantity,
+          price: product[0].price.toString(),
+        });
     }
+
+    return NextResponse.json({ message: 'Item added to cart' });
   } catch (error) {
+    console.error('Error adding to cart:', error);
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 'VALIDATION_ERROR',
-            message: 'Validation failed',
-            details: error.errors,
-          },
-        },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
+    }
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { itemId, quantity } = z.object({
+      itemId: z.string(),
+      quantity: z.number().min(1),
+    }).parse(body);
+
+    // const session = await getServerSession(authConfig);
+    // const sessionId = request.cookies.get('sessionId')?.value;
+    
+    // if (!session?.user?.id && !sessionId) {
+    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // }
+
+    // const userId = session?.user?.id || sessionId;
+
+    // Mock user ID for now since auth is disabled
+    const userId = 'guest-user';
+
+    // Verify cart ownership
+    const userCart = await db
+      .select()
+      .from(carts)
+      .where(eq(carts.userId, userId))
+      .limit(1);
+
+    if (userCart.length === 0) {
+      return NextResponse.json({ error: 'Cart not found' }, { status: 404 });
     }
 
-    console.error('Cart POST Error:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: {
-          code: 'CART_UPDATE_ERROR',
-          message: 'Failed to update cart',
-        },
-      },
-      { status: 500 }
-    );
+    const cartId = userCart[0].id;
+
+    // Verify item belongs to user's cart
+    const item = await db
+      .select()
+      .from(cartItems)
+      .where(and(eq(cartItems.id, itemId), eq(cartItems.cartId, cartId)))
+      .limit(1);
+
+    if (item.length === 0) {
+      return NextResponse.json({ error: 'Item not found' }, { status: 404 });
+    }
+
+    // Update quantity
+    await db
+      .update(cartItems)
+      .set({ quantity })
+      .where(eq(cartItems.id, itemId));
+
+    return NextResponse.json({ message: 'Cart updated' });
+  } catch (error) {
+    console.error('Error updating cart:', error);
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
+    }
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const itemId = searchParams.get('itemId');
+
+    if (!itemId) {
+      return NextResponse.json({ error: 'Item ID is required' }, { status: 400 });
+    }
+
+    // const session = await getServerSession(authConfig);
+    // const sessionId = request.cookies.get('sessionId')?.value;
+    
+    // if (!session?.user?.id && !sessionId) {
+    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // }
+
+    // const userId = session?.user?.id || sessionId;
+
+    // Mock user ID for now since auth is disabled
+    const userId = 'guest-user';
+
+    // Verify cart ownership
+    const userCart = await db
+      .select()
+      .from(carts)
+      .where(eq(carts.userId, userId))
+      .limit(1);
+
+    if (userCart.length === 0) {
+      return NextResponse.json({ error: 'Cart not found' }, { status: 404 });
+    }
+
+    const cartId = userCart[0].id;
+
+    // Verify item belongs to user's cart
+    const item = await db
+      .select()
+      .from(cartItems)
+      .where(and(eq(cartItems.id, itemId), eq(cartItems.cartId, cartId)))
+      .limit(1);
+
+    if (item.length === 0) {
+      return NextResponse.json({ error: 'Item not found' }, { status: 404 });
+    }
+
+    // Delete item
+    await db
+      .delete(cartItems)
+      .where(eq(cartItems.id, itemId));
+
+    return NextResponse.json({ message: 'Item removed from cart' });
+  } catch (error) {
+    console.error('Error removing from cart:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 } 
