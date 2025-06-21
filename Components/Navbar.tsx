@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/Components/CartContext';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuth } from '@/Components/AuthContext';
+// import { useSession, signOut } from 'next-auth/react';
 
 interface NavbarProps {
   // Removed: onCartClick: () => void;
@@ -99,7 +99,7 @@ export default function Navbar(/* Removed: { onCartClick }: NavbarProps */) {
   const { cart, toggleCart } = useCart();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { user, logout } = useAuth();
+  // const { data: session, status } = useSession();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -124,6 +124,10 @@ export default function Navbar(/* Removed: { onCartClick }: NavbarProps */) {
     }
   };
 
+  // const handleLogout = async () => {
+  //   await signOut({ callbackUrl: '/' });
+  // };
+
   return (
     <>
   
@@ -143,14 +147,40 @@ export default function Navbar(/* Removed: { onCartClick }: NavbarProps */) {
             </svg>
           </button>
           <div className="relative group">
-            {!user ? (
-              <Link href="/auth/login" className="btn">Login</Link>
+            {/* {status === 'loading' ? (
+              <div className="btn">Loading...</div>
+            ) : session ? (
+              <div className="relative">
+                <button
+                  onClick={() => setOpenIndex(openIndex === 0 ? null : 0)}
+                  className="btn flex items-center gap-1"
+                  aria-haspopup="true"
+                  aria-expanded={openIndex === 0}
+                >
+                  <span>{session.user?.name || session.user?.email}</span>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <ul className={`absolute right-0 top-full min-w-[200px] bg-white shadow-lg rounded-md py-2 z-50 transition-all duration-200 ${openIndex === 0 ? 'block' : 'hidden'}`} role="menu">
+                  <li>
+                    <Link href="/profile" className="block px-4 py-2 hover:bg-gray-100" role="menuitem">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout} className="block w-full text-left px-4 py-2 hover:bg-gray-100" role="menuitem">
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
             ) : (
-              <>
-                <Link href="/profile" className="profile-icon">👤</Link>
-                <button onClick={logout} className="btn">Logout</button>
-              </>
-            )}
+              <Link href="/auth/login" className="btn">
+                Login
+              </Link>
+            )} */}
+            <div className="btn">Guest User</div>
           </div>
           <button onClick={toggleCart} className="relative" aria-label="Cart">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
