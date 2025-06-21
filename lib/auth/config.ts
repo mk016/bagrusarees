@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
-import { SupabaseAdapter } from '@auth/supabase-adapter';
-import GoogleProvider from 'next-auth/providers/google';
+// import { SupabaseAdapter } from '@auth/supabase-adapter';
+// import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { z } from 'zod';
 
@@ -10,15 +10,15 @@ const loginSchema = z.object({
 });
 
 export const authConfig: NextAuthOptions = {
-  adapter: SupabaseAdapter({
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  }),
+  // adapter: SupabaseAdapter({
+  //   url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  //   secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  // }),
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID!,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    // }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -48,9 +48,9 @@ export const authConfig: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: '/login',
+    signIn: '/auth/login',
     signOut: '/',
-    error: '/login',
+    error: '/auth/login',
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -65,9 +65,9 @@ export const authConfig: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token && session.user) {
-        session.user.email = token.id as string;
+        session.user.id = token.id as string;
+        // Only assign if role exists on token
         if ('role' in token) {
-          // @ts-expect-error: role is custom
           session.user.role = token.role as string;
         }
       }
@@ -77,5 +77,5 @@ export const authConfig: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || 'fallback-secret-for-development',
 }; 
