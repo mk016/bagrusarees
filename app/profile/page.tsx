@@ -1,29 +1,40 @@
 "use client";
-import { useAuth } from '@/Components/AuthContext';
-import { useRouter } from 'next/navigation';
+
+// import { useSession } from 'next-auth/react';
+// import { useRouter } from 'next/navigation';
+// import { useEffect } from 'react';
 
 export default function ProfilePage() {
-  const { user, logout } = useAuth();
-  const router = useRouter();
+  // const { data: session, status } = useSession();
+  // const router = useRouter();
 
-  if (!user) {
-    router.replace('/auth/login');
-    return null;
-  }
+  // useEffect(() => {
+  //   if (status === 'unauthenticated') {
+  //     router.push('/auth/login');
+  //   }
+  // }, [status, router]);
+
+  // if (status === 'loading') {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <div className="text-center">Loading...</div>
+  //     </div>
+  //   );
+  // }
+
+  // if (!session) {
+  //   return null;
+  // }
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-8 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Profile</h1>
-      <div className="mb-4">
-        <p><span className="font-semibold">Name:</span> {user.name}</p>
-        <p><span className="font-semibold">Email:</span> {user.email}</p>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
+        <p className="text-gray-600">Authentication is currently disabled.</p>
+        <a href="/" className="text-blue-600 hover:underline mt-4 inline-block">
+          Return to Home
+        </a>
       </div>
-      <button
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        onClick={() => { logout(); router.push('/'); }}
-      >
-        Logout
-      </button>
     </div>
   );
 } 
